@@ -16,8 +16,8 @@ us_data = read_excel('original_data/sitc115presdigit.xlsx')
 countries_coordinates <- read.csv('main_data/countries_codes_and_coordinates.csv')
 us_data = us_data[, c(1 : 4, 41, 42)]
 names(us_data) <-  c("year", "SITC", "class", "country", "export", "import")
-export = read_csv('original_data/export.csv')
-import = read_csv('original_data/import.csv')
+export = read_csv('original_data/export_2022.csv')
+import = read_csv('original_data/import_2022.csv')
 states <- states(cb=T)
 state_geo <- read.csv('original_data/state_lat_long.csv')
 states_js <- geojson_read(x = "https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json", what = "sp")
@@ -55,6 +55,7 @@ us_country_sum_2017 <- filter(us_country_sum, year == 2017)
 us_country_sum_2018 <- filter(us_country_sum, year == 2018)
 us_country_sum_2019 <- filter(us_country_sum, year == 2019)
 us_country_sum_2020 <- filter(us_country_sum, year == 2020)
+us_country_sum_2021 <- filter(us_country_sum, year == 2021)
 
 
 
@@ -63,21 +64,25 @@ us_country_sum_2020 <- filter(us_country_sum, year == 2020)
 ## create state_total
 # chose world value for export and import
 export$rank <- as.integer(export$rank)
-export$val2018 <- as.integer(export$val2018)
 export$val2015 <- as.integer(export$val2015)
 export$val2016 <- as.integer(export$val2016)
 export$val2017 <- as.integer(export$val2017)
+export$val2018 <- as.integer(export$val2018)
+export$val2019 <- as.integer(export$val2019)
+export$val2020 <- as.integer(export$val2020)
 export <- subset(export, export$countryd=="World")
 import$rank <- as.integer(import$rank)
-import$val2018 <- as.integer(import$val2018)
 import$val2015 <- as.integer(import$val2015)
 import$val2016 <- as.integer(import$val2016)
 import$val2017 <- as.integer(import$val2017)
+import$val2018 <- as.integer(import$val2018)
+import$val2019 <- as.integer(import$val2019)
+import$val2020 <- as.integer(import$val2020)
 import <- subset(import, import$countryd=="World")
 
-# chose year from 2015 to 2016
-export_tot <- subset(export, select = c("statename","val2015","val2016","val2017", "val2018"))
-import_tot <- subset(import, select = c("statename","val2015","val2016","val2017", "val2018"))
+# chose year from 2015 to 2020
+export_tot <- subset(export, select = c("statename","val2015","val2016","val2017", "val2018", "val2019","val2020"))
+import_tot <- subset(import, select = c("statename","val2015","val2016","val2017", "val2018", "val2019","val2020"))
 
 # rename
 names(export_tot)[names(export_tot) == 'statename'] <- 'state'
@@ -85,32 +90,41 @@ names(export_tot)[names(export_tot) == 'val2015'] <- '2015'
 names(export_tot)[names(export_tot) == 'val2016'] <- '2016'
 names(export_tot)[names(export_tot) == 'val2017'] <- '2017'
 names(export_tot)[names(export_tot) == 'val2018'] <- '2018'
+names(export_tot)[names(export_tot) == 'val2019'] <- '2019'
+names(export_tot)[names(export_tot) == 'val2020'] <- '2020'
 names(import_tot)[names(import_tot) == 'statename'] <- 'state'
 names(import_tot)[names(import_tot) == 'val2015'] <- '2015'
 names(import_tot)[names(import_tot) == 'val2016'] <- '2016'
 names(import_tot)[names(import_tot) == 'val2017'] <- '2017'
 names(import_tot)[names(import_tot) == 'val2018'] <- '2018'
+names(import_tot)[names(import_tot) == 'val2019'] <- '2019'
+names(import_tot)[names(import_tot) == 'val2020'] <- '2020'
 
 # calculate the total value
 export_sum_2015 <- as.integer(sum(export_tot[, '2015']) / 1000)
 export_sum_2016 <- as.integer(sum(export_tot[, '2016']) / 1000)
 export_sum_2017 <- as.integer(sum(export_tot[, '2017']) / 1000)
 export_sum_2018 <- as.integer(sum(export_tot[, '2018']) / 1000)
+export_sum_2019 <- as.integer(sum(export_tot[, '2019']) / 1000)
+export_sum_2020 <- as.integer(sum(export_tot[, '2020']) / 1000)
+
 import_sum_2015 <- as.integer(sum(import_tot[, '2015']) / 1000)
 import_sum_2016 <- as.integer(sum(import_tot[, '2016']) / 1000)
 import_sum_2017 <- as.integer(sum(import_tot[, '2017']) / 1000)
 import_sum_2018 <- as.integer(sum(import_tot[, '2018']) / 1000)
+import_sum_2019 <- as.integer(sum(import_tot[, '2019']) / 1000)
+import_sum_2020 <- as.integer(sum(import_tot[, '2020']) / 1000)
 
 # create state_total
-year <- c("2015", "2016", "2017", "2018")
-exports <- c(export_sum_2015, export_sum_2016, export_sum_2017, export_sum_2018)
-imports <- c(import_sum_2015, import_sum_2016, import_sum_2017, import_sum_2018)
+year <- c("2015", "2016", "2017", "2018", "2019", "2020")
+exports <- c(export_sum_2015, export_sum_2016, export_sum_2017, export_sum_2018, export_sum_2019, export_sum_2020)
+imports <- c(import_sum_2015, import_sum_2016, import_sum_2017, import_sum_2018, import_sum_2019, import_sum_2020)
 state_total = data.frame(year, exports, imports)
 
 ## create state_background
 # calculate the average value
-export_tot$avrg_export <- as.integer(rowMeans(export_tot[,c('2015', '2016', '2017', '2018')], na.rm=TRUE))
-import_tot$avrg_import <- as.integer(rowMeans(import_tot[,c('2015', '2016', '2017', '2018')], na.rm=TRUE))
+export_tot$avrg_export <- as.integer(rowMeans(export_tot[,c('2015', '2016', '2017', '2018', '2019', '2020')], na.rm=TRUE))
+import_tot$avrg_import <- as.integer(rowMeans(import_tot[,c('2015', '2016', '2017', '2018', '2019', '2020')], na.rm=TRUE))
 
 # join df
 names(states)[names(states) == 'NAME'] <- 'state'
@@ -121,8 +135,8 @@ state_background <- left_join(state_background, states, by = "state")
 
 
 ## create export_tot_tidy and import_tot_tidy
-export_tot_tidy <- gather(export_tot, "year", "values", 2:5)
-import_tot_tidy <- gather(import_tot, "year", "values", 2:5)
+export_tot_tidy <- gather(export_tot, "year", "values", 2:7)
+import_tot_tidy <- gather(import_tot, "year", "values", 2:7)
 names(export_tot_tidy)[names(export_tot_tidy) == 'state'] <- 'State'
 names(import_tot_tidy)[names(import_tot_tidy) == 'state'] <- 'State'
 
@@ -131,9 +145,15 @@ names(export_tot)[names(export_tot) == '2015'] <- '2015ex'
 names(export_tot)[names(export_tot) == '2016'] <- '2016ex'
 names(export_tot)[names(export_tot) == '2017'] <- '2017ex'
 names(export_tot)[names(export_tot) == '2018'] <- '2018ex'
+names(export_tot)[names(export_tot) == '2019'] <- '2019ex'
+names(export_tot)[names(export_tot) == '2020'] <- '2020ex'
+
 names(import_tot)[names(import_tot) == '2015'] <- '2015im'
 names(import_tot)[names(import_tot) == '2016'] <- '2016im'
 names(import_tot)[names(import_tot) == '2017'] <- '2017im'
 names(import_tot)[names(import_tot) == '2018'] <- '2018im'
+names(import_tot)[names(import_tot) == '2019'] <- '2019im'
+names(import_tot)[names(import_tot) == '2020'] <- '2020im'
 data_tab_state <- left_join(export_tot, import_tot, by = "state")
+
 

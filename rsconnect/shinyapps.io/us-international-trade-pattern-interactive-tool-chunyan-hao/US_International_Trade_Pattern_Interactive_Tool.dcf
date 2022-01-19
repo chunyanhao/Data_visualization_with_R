@@ -1,0 +1,14 @@
+name: US_International_Trade_Pattern_Interactive_Tool
+title: US_International_Trade_Pattern_Interactive_Tool
+username:
+account: us-international-trade-pattern-interactive-tool-chunyan-hao
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5472209
+bundleId: 5486866
+url: https://us-international-trade-pattern-interactive-tool-chunyan-hao.shinyapps.io/US_International_Trade_Pattern_Interactive_Tool/
+when: 1642631824.17895
+lastSyncTime: 1642631824.17896
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Data_table.png|global_trade_map.png|README.md

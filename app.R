@@ -18,6 +18,7 @@ col_2017 = "#045a8d"
 col_2018 = "#4d004b"
 col_2019 = "#016c59"
 col_2020 = "#7F5AA2"
+col_2021 = "#A33D02"
 
 
 
@@ -49,9 +50,9 @@ export_map = leaflet(world_map) %>%
   addTiles() %>%
   addLayersControl(
     position = "bottomright",
-    overlayGroups = c(2015, 2016, 2017, 2018, 2019, 2020),
+    overlayGroups = c(2015, 2016, 2017, 2018, 2019, 2020, 2021),
     options = layersControlOptions(collapsed = FALSE)) %>%
-  hideGroup(c(2016, 2017, 2018, 2019, 2020)) %>%
+  hideGroup(c(2016, 2017, 2018, 2019, 2020, 2021)) %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
   fitBounds(~-100,-60,~60,70) %>%
   addLegend("topright", pal = export_pal, values = ~df_background$avg_export_m,
@@ -64,9 +65,9 @@ import_map = leaflet(world_map) %>%
   addTiles() %>% 
   addLayersControl(
     position = "bottomright",
-    overlayGroups = c(2015, 2016, 2017, 2018, 2019, 2020),
+    overlayGroups = c(2015, 2016, 2017, 2018, 2019, 2020, 2021),
     options = layersControlOptions(collapsed = FALSE)) %>% 
-  hideGroup(c(2016, 2017, 2018, 2019, 2020)) %>%
+  hideGroup(c(2016, 2017, 2018, 2019, 2020, 2021)) %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
   fitBounds(~-100,-60,~60,70) %>%
   addLegend("topright", pal = import_pal, values = ~df_background$avg_import_m,
@@ -90,7 +91,7 @@ treemap_state = function(topn, trade_type){
       plot_df = data.frame( state_background[c("state", "avrg_export")]) %>% top_n(topn, state_background$avrg_export) 
       treemap(plot_df, index = "state", vSize = "avrg_export", title ="", palette = "Blues")}}
 
-# 3) the change of states from 2015 to 2018
+# 3) the change of states from 2015 to 2020
 state_time_series <- function(name, trade_type){
   if(trade_type == "import"){
     import_tot_tidy %>% 
@@ -198,7 +199,7 @@ ui <- bootstrapPage(
                                         
                                         plotOutput("treemap_state", height="150px", width="100%"),
                                         selectInput(inputId = "state_name",
-                                                    label = h4("please choose state to plot from 2015 to 2018"),
+                                                    label = h4("please choose state to plot from 2015 to 2020"),
                                                     choices = c("Alabama", "Alaska", "Arizona",
                                                                 "Arkansas",	"California",	"Colorado",
                                                                 "Connecticut"	,"Delaware",	"District of Columbia",
@@ -320,6 +321,13 @@ server = function(input, output, session) {
                          label = sprintf("<strong>%s</strong><br/>import million  %g<br/>export million %g<br/>import percent %s<br/>export percent %s", us_country_sum_2020$country, us_country_sum_2020$total_import_m, us_country_sum_2020$total_export_m, us_country_sum_2020$import_share, us_country_sum_2020$export_share) %>% lapply(htmltools::HTML),
                          labelOptions = labelOptions(
                            style = list("font-weight" = "normal", padding = "3px 8px", "color" = col_2020),
+                           textsize = "15px", direction = "auto"))%>%
+        
+        addCircleMarkers(data = us_country_sum_2021, lat = ~ latitude, lng = ~ longitude, weight = 1, radius = ~(total_export_m/7000), 
+                         fillOpacity = 0.2, color = col_2021, group = "2021",
+                         label = sprintf("<strong>%s</strong><br/>import million  %g<br/>export million %g<br/>import percent %s<br/>export percent %s", us_country_sum_2021$country, us_country_sum_2021$total_import_m, us_country_sum_2021$total_export_m, us_country_sum_2021$import_share, us_country_sum_2021$export_share) %>% lapply(htmltools::HTML),
+                         labelOptions = labelOptions(
+                           style = list("font-weight" = "normal", padding = "3px 8px", "color" = col_2021),
                            textsize = "15px", direction = "auto"))
     }
     else{
@@ -373,7 +381,14 @@ server = function(input, output, session) {
                        label = sprintf("<strong>%s</strong><br/>import million  %g<br/>export million %g<br/>import percent %s<br/>export percent %s", us_country_sum_2020$country, us_country_sum_2020$total_import_m, us_country_sum_2020$total_export_m, us_country_sum_2020$import_share, us_country_sum_2020$export_share) %>% lapply(htmltools::HTML),
                        labelOptions = labelOptions(
                          style = list("font-weight" = "normal", padding = "3px 8px", "color" = col_2020),
-                         textsize = "15px", direction = "auto")) 
+                         textsize = "15px", direction = "auto")) %>%
+      
+      addCircleMarkers(data = us_country_sum_2021, lat = ~ latitude, lng = ~ longitude, weight = 1, radius = ~(total_import_m/12000), 
+                       fillOpacity = 0.2, color = col_2021, group = "2021",
+                       label = sprintf("<strong>%s</strong><br/>import million  %g<br/>export million %g<br/>import percent %s<br/>export percent %s", us_country_sum_2021$country, us_country_sum_2021$total_import_m, us_country_sum_2021$total_export_m, us_country_sum_2021$import_share, us_country_sum_2021$export_share) %>% lapply(htmltools::HTML),
+                       labelOptions = labelOptions(
+                         style = list("font-weight" = "normal", padding = "3px 8px", "color" = col_2021),
+                         textsize = "15px", direction = "auto"))
     }
     }
   })
