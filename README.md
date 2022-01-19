@@ -9,7 +9,7 @@ Internatioanl trade data are all obtained from [U.S. Census Bureau/ Foreign Trad
 
 Follow [this](https://vac-lshtm.shinyapps.io/ncov_tracker/) link for the interactive Shiny app. A screenshot of the interface is provided below.
 
-![Shiny app interface](www/global_trade_map.png)
+(<img src="./golbal_trade_map.png" alt="Shiny app interface" style="width: 600px;"/>)
 
 ## Analysis code
 
