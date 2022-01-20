@@ -11,7 +11,7 @@ Follow [this](https://vac-lshtm.shinyapps.io/ncov_tracker/) link for the interac
 
 A screenshot of the interface is provided below.
 
-<img src="./golbal_trade_map.png" alt="Shiny app interface" style="width: 600px;"/>
+<img src="./global_trade_map.png" alt="Shiny app interface" style="width: 600px;"/>
 
 ## Analysis code
 
