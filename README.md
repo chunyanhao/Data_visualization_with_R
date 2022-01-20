@@ -13,7 +13,7 @@ A screenshot of the interface is provided below.
 
 <img src="./images/global_trade_map.png" alt="Shiny app interface" style="width: 600px;"/>
 
-<img src="./images/leaflet_1.png" alt="leaflet_1" style="width: 600px;"/><img src="./images/leaflet_2.png" alt="leaflet_2" style="width: 600px;"/>
+<img src="./images/leaflet_1.png" alt="leaflet_1" style="width: 300px;"/><img src="./images/leaflet_2.png" alt="leaflet_2" style="width: 323px;"/>
 
 Except for dashboard based on world map, I also provide access to view the original data:
 <img src="./images/Data_table.png" alt="Data_table" style="width: 600px;"/>
