@@ -13,6 +13,9 @@ A screenshot of the interface is provided below.
 
 <img src="./global_trade_map.png" alt="Shiny app interface" style="width: 600px;"/>
 
+Except for dashboard based on world map, I also provide access to view the original data:
+<img src="./Data_table.png" alt="Data_table" style="width: 600px;"/>
+
 ## Analysis code
 
 There are 4 key elements of the analysis code:
