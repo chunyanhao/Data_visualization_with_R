@@ -11,12 +11,12 @@ Follow [this](https://us-international-trade-pattern-interactive-tool-chunyan-ha
 
 A screenshot of the interface is provided below.
 
-<img src="./image/global_trade_map.png" alt="Shiny app interface" style="width: 600px;"/>
+<img src="./images/global_trade_map.png" alt="Shiny app interface" style="width: 600px;"/>
 
-<img src="./image/leaflet_1.png" alt="leaflet_1" style="width: 600px;"/><img src="./image/leaflet_2.png" alt="leaflet_2" style="width: 600px;"/>
+<img src="./images/leaflet_1.png" alt="leaflet_1" style="width: 600px;"/><img src="./images/leaflet_2.png" alt="leaflet_2" style="width: 600px;"/>
 
 Except for dashboard based on world map, I also provide access to view the original data:
-<img src="./image/Data_table.png" alt="Data_table" style="width: 600px;"/>
+<img src="./images/Data_table.png" alt="Data_table" style="width: 600px;"/>
 
 ## Analysis code
 
