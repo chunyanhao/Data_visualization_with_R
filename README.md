@@ -28,7 +28,7 @@ There are 4 key elements of the analysis code:
 
 Several resources proved invaluable when building this app, including:
 - The [Shiny Gallery](https://shiny.rstudio.com/gallery/) ;
-- A [map based shiny App](https://shiny.rstudio.com/gallery/covid19-tracker.html) and a [international trade data display platform](https://shiny.rstudio.com/gallery/nz-trade-dash.html);
+- A [map based shiny App](https://shiny.rstudio.com/gallery/covid19-tracker.html) and an [international trade data display platform](https://shiny.rstudio.com/gallery/nz-trade-dash.html).
 
 ## Authors
 Chunyan Hao, MS in Data Analytics Engineering, Northeastern University
