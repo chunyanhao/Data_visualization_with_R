@@ -22,7 +22,7 @@ There are 4 key elements of the analysis code:
 - *Data_cleaning.R* – an R script that extracts and creates subtables and variables for the display of Dashboard. Raw data are all saved in the *original_data* folder.Output files are saved in the *main_data* folder.
 - *App.R* - an R script used to render the Shiny app. This consists of several plotting functions as well as the ui (user interface) and server code required to render the Shiny app. 
 - *Original_data* - a folder containing the original input data relating to the international trade data. 'product detail and partner country' section data are all saved in 'sitc115presdigit.xls'; 'top 25 trading partner countries for each state' section data are saved in 'exctyall_17_20.xls', 'imctyall_17_20.xls', 'exctyall_15_18.xls', 'imctyall_15_18.xls'. I first concat data from 2015 to 2018 and data from 2017 to 2020 together to get 6-year data. Then I generated 'export.csv' and 'import.csv' as pull dataset at state level.
-- *Main_data* - a folder containing the  output data generated from data_cleaning section and jons files which will be used to construct the world map.
+- *Main_data* - a folder containing the  output data generated from data_cleaning section and json files which will be used to construct the world map.
 
 ## Other resources
 
