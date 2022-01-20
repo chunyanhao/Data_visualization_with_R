@@ -153,7 +153,7 @@ ui <- bootstrapPage(
                           tags$head(includeCSS("original_data/styles.css")),
                           leafletOutput("mymap", width="90%", height="90%"),
                           absolutePanel(id = "controls", class = "panel panel-default",
-                                        top = 50, left = 30, width = 320, fixed= FALSE,
+                                        top = 50, left = 30, width = 350, fixed= FALSE,
                                         draggable = TRUE, height = "auto",
                                         
                                         span(tags$i(h4("Internation trade data are subject to significant variation in political and economic environment worldwide.")), style="color:#045a8d"),
@@ -455,4 +455,7 @@ server = function(input, output, session) {
 }
 
 
-shinyApp(ui, server)
+shinyApp(ui, server) 
+
+
+
