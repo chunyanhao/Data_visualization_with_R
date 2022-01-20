@@ -7,7 +7,7 @@ International trade data are all obtained from [U.S. Census Bureau/ Foreign Trad
 
 ## Shiny interface
 
-Follow [this](https://us-international-trade-pattern-interactive-tool-chunyan-hao.shinyapps.io/RShiny/) link for the interactive Shiny app. 
+Follow [this](https://us-international-trade-pattern-interactive-tool-chunyan-hao.shinyapps.io/ShinyApp/) link for the interactive Shiny app. 
 
 A screenshot of the interface is provided below.
 
